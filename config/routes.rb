@@ -9,4 +9,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "/home", to: "pages#home"
+  resources :projects, only: %i[index new create destroy] do
+    resources :components, only: %i[index new create show]
+  end
+
+  resources :components, only: [:destroy] do
+    resources :messages, only: [:create]
+  end
 end
