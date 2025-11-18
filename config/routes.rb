@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   get "/home", to: "pages#home"
   resources :projects, only: %i[index new create destroy] do
-    resources :components, only: %i[index new create show]
+    resources :components, only: %i[index new create show] do
+      get :preview, on: :member
+    end
   end
 
   resources :components, only: [:destroy] do
