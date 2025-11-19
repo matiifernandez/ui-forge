@@ -35,6 +35,13 @@ class ComponentsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def destroy
+    @component = Component.find(params[:id])
+    @component.destroy
+    redirect_to component_path, notice: "the component #{@component.name} was deleted"
+  end
+
+  private
 
   def set_project
     @project = Project.find(params[:project_id])
