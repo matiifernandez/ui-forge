@@ -1,0 +1,15 @@
+.code-card {
+  background-color: rgb(230, 230, 230);
+  border-radius: 8px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  background-color: rgb(214, 213, 213);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-color: #d6d5d5;
+}
+
+.nav-tabs .nav-link {
+  color: rgb(40, 40, 40);
+}
