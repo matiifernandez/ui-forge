@@ -1,31 +1,28 @@
 <div class="container">
-      <h1 class="my-4">My Projects</h1>
-      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Create new project
-      </button>
-  <div class="cards">
-  <% @projects.each do |project| %>
-    <div class="project-item">
-
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgb(95, 97, 126))">
-        <%= project.title %> <br>
-        <%= project.components.count %> Components
-
-        <%= link_to '', project_components_path(project), class: "stretched-link" %>
-      </div>
-
-      <div class="delete-btn">
-        <%= link_to '🗑️', project_path(project),
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <h2>My Projects</h2>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Create new project
+    </button>
+  </div>
+  <div class="cards mb-2">
+    <% @projects.each do |project| %>
+      <div class="project-item">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgb(95, 97, 126))">
+          <%= project.title %> <br>
+          <%= project.components.count %> Components
+          <%= link_to '', project_components_path(project), class: "stretched-link" %>
+        </div>
+        <div class="delete-btn">
+          <%= link_to '🗑️', project_path(project),
             class: 'text-decoration-none',
             data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{project.title}?" }
         %>
+        </div>
       </div>
-
-    </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -34,12 +31,10 @@
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Create new project</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
       <%= simple_form_for @project do |f| %>
         <div class="modal-body">
           <%= f.input :title, placeholder: "title for your newly forged UI kit..." %>
           <%= f.input :description, placeholder: "be as descriptive as possible..." %>
-
           <div class="row">
             <div class="col-6">
               <%= f.input :primary_color, as: :color %>
