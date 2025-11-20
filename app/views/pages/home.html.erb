@@ -1,9 +1,36 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url("UIForge-logo-update.png") %>)">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url("forge.jpg") %>)">
   <div class="container">
-    <h1>UI Forge helps you <strong>generating UI components</strong> for your <strong>projects</strong>!</h1>
-    <p><%= link_to "Sing in", new_user_session_path %> to get started</p>
+    <h1>UIForge</h1>
+    <p>From Concept to Component in Seconds.</p>
+    <%= link_to "Sign Up", new_user_session_path, class: "btn btn-primary" %>
+  </div>
+</div>
+<div class="container">
+  <div class="home-cards">
+    <div class="home-card">
+      <%= image_tag "fire.jpg", alt: "Fire from a forge" %>
+      <h4>UIForge: Component Generation, Reimagined.</h4>
+      <p>Simply envision your design, and the UIForge handles the implementation.</p>
+    </div>
+    <div class="home-card">
+      <%= image_tag "hammer.jpg", alt: "Fire from a forge" %>
+      <h4>Skip the Boilerplate. Ship the Features.</h4>
+      <p>Spend your time coding the core logic, not the UI boilerplate.</p>
+    </div>
+    <div class="home-card">
+      <%= image_tag "forge-fire.jpg", alt: "Fire from a forge" %>
+      <h4>Your Personal AI UI Co-Pilot.</h4>
+      <p>UIForge: Your indispensable partner for turning ideas into functional projects.</p>
+    </div>
   </div>
 </div>
 <footer class="footer">
-  Crafted at <a href="https://www.lewagon.com/">LeWagon Tokyo</a>, in a week, without fighting by kizunaLingua team.
+  <div class="home-footer">
+    <%= link_to projects_path, class: "home-brand" do %>
+      <%= image_tag "UIForge-logo-update.png", class: "rounded-5 mr-3" %>
+    <% end %>
+    <%= link_to "https://github.com/matiifernandez/ui-forge" do %>
+      <i class="fab fa-github"></i>
+    <% end %>
+  </div>
 </footer>

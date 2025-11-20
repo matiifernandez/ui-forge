@@ -1,1 +1,91 @@
 // Specific CSS for your home-page
+.home-body {
+  background-color: black;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .home-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .home-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .home-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .home-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .home-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.home-card {
+  width: 350px;
+  border-radius: 16px;
+  background-color: #67698670;
+  padding: 8px;
+  margin-top: 40px;
+
+  img {
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  h4 {
+    color: white;
+    font-size: medium;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    text-shadow: 1px 1px 2px black;
+  }
+
+  p {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+  }
+}
+
+.home-card:hover {
+   background-color: #676986;
+}
+
+.home-footer {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+}
+
+.rounded-5 {
+  height: 60px;
+}
+
+.fa-github {
+  font-size: 60px;
+}
