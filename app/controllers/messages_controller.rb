@@ -16,6 +16,7 @@ Requirements:
 - Do NOT add commentary or explanations.
 - Only return valid JSON.
 - Escape quotes inside the HTML and CSS values."
+- Do not add newline characters. e.g. \n
 PROMPT
 
   def create
@@ -35,7 +36,7 @@ PROMPT
         format.turbo_stream { render 'create' }
       end
     else
-      render chat_path(@chat), status: :unprocessable_entity
+      render 'chats/show', status: :unprocessable_entity
     end
   end
 
