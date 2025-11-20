@@ -14,16 +14,16 @@
             <div class="col-4 code-card">
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="code-nav nav-link active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HTML</button>
-                  <button class="code-nav nav-link" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+                  <button class="code-nav nav-link active" id="nav-html<%= message.id %>-tab" data-bs-toggle="tab" data-bs-target="#nav-html<%= message.id %>" type="button" role="tab" aria-controls="nav-html<%= message.id %>" aria-selected="true">HTML</button>
+                  <button class="code-nav nav-link" id="nav-css<%= message.id %>-tab" data-bs-toggle="tab" data-bs-target="#nav-css<%= message.id %>" type="button" role="tab" aria-controls="nav-css<%= message.id %>" aria-selected="false">CSS</button>
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab" tabindex="0">
-                  <pre><code class="language-html"><%= parsed["html"] %></code></pre>
+                <div class="tab-pane fade show active" id="nav-html<%= message.id %>" role="tabpanel" aria-labelledby="nav-html<%= message.id %>-tab" tabindex="0">
+                  <pre><code class="language-html"><%= HtmlBeautifier.beautify(parsed["html"]) %></code></pre>
                 </div>
-                <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab" tabindex="0">
-                  <pre><code class="language-css"><%= parsed["css"] %></code></pre>
+                <div class="tab-pane fade" id="nav-css<%= message.id %>" role="tabpanel" aria-labelledby="nav-css<%= message.id %>-tab" tabindex="0">
+                  <pre><code class="language-css"><%= CssBeautify.beautify(parsed["css"]) %></code></pre>
                 </div>
               </div>
             </div>
