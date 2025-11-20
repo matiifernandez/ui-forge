@@ -1,4 +1,6 @@
+require 'ruby_llm/schema'
 class Project < ApplicationRecord
+  include RubyLLM::Helpers
   belongs_to :user
   has_many :components, dependent: :destroy
   validates :title, presence: true, uniqueness: {scope: :user_id}, length: {maximum: 50}
@@ -23,26 +25,25 @@ class Project < ApplicationRecord
   def generate_component_and_chat(comp_name)
     component = self.components.create!(name: comp_name.capitalize)
     chat = component.create_chat!
-    system_instructions = create_prompt_for(comp_name)
+    system_instructions = create_system_prompt
     user_prompt_content = message_prompt(comp_name)
     user_message = chat.messages.create!(
       role: 'user',
       content: user_prompt_content
     )
 
-    llm_response = @ruby_llm_chat.with_instructions(system_instructions).ask(user_message.content)
-    assistant_message = chat.messages.create!(
+    llm_response = @ruby_llm_chat.with_instructions(system_instructions).with_schema(response_schema).ask(user_message.content)
+      chat.messages.create!(
       role: "assistant",
-      content: llm_response.content
+      content: llm_response.content.to_s
     )
-    update_component_from_response(component, assistant_message.content)
+    update_component_from_response(component, llm_response.content)
   end
 
-  def update_component_from_response(component, json_string)
-    parsed_json = JSON.parse(json_string)
+  def update_component_from_response(component, html_and_css)
     component.update!(
-      html_code: parsed_json['html'],
-      css_code: parsed_json['css'],
+      html_code: html_and_css['html'],
+      css_code: html_and_css['css'],
     )
   end
 
@@ -52,7 +53,7 @@ class Project < ApplicationRecord
     If the #{component_name} is a banner, you want to add the #{self.title} having into account the readability and contrast."
   end
 
-  def create_prompt_for(component)
+  def create_system_prompt
     <<~PROMPT
   "You are an expert Front-end Developer.
   Your job is to generate UI components based on the user’s description.
@@ -71,5 +72,12 @@ class Project < ApplicationRecord
   - Only return valid JSON.
   - Escape quotes inside the HTML and CSS values."
   PROMPT
+  end
+
+  def response_schema
+    schema "html_and_css", description: "An object with html and css code" do
+      string :html, description: "Plain html code"
+      string :css, description: "Plain css code"
+    end
   end
 end
