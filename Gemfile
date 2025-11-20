@@ -84,3 +84,4 @@ gem "cssbeautify"
 gem "kramdown"
 gem "rouge"
 gem "kramdown-parser-gfm"
+gem 'ruby_llm-schema'
