@@ -10,19 +10,41 @@
     </iframe>
   </div>
   <div class="col-5 code-card">
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="code-nav nav-link active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HTML</button>
-        <button class="code-nav nav-link" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
-      </div>
+  <nav class="d-flex justify-content-between align-items-center">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="code-nav nav-link active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HTML</button>
+      <button class="code-nav nav-link" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+    </div>
     </nav>
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab" tabindex="0">
-        <pre><code class="language-html"><%= h @formatted_html %></code></pre>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab" tabindex="0">
+      <div data-controller="copy" class="d-flex flex-column">
+        <button
+          data-action="copy#copy"
+          data-copy-target="button"
+          class="btn btn-sm btn-secondary align-self-end m-2"
+          style="width: fit-content;"
+        >
+          <i class="bi bi-clipboard"></i> Copy HTML
+        </button>
+        <pre data-copy-target="source"><code class="language-html"><%= h @formatted_html %></code></pre>
       </div>
-      <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab" tabindex="0">
-        <pre><code class="language-css"><%= @formatted_css %></code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab" tabindex="0">
+      <div data-controller="copy" class="d-flex flex-column">
+        <button
+          data-action="copy#copy"
+          data-copy-target="button"
+          class="btn btn-sm btn-secondary align-self-end m-2"
+          style="width: fit-content;"
+        >
+          <i class="bi bi-clipboard"></i> Copy CSS
+        </button>
+        <pre data-copy-target="source"><code class="language-css"><%= @formatted_css %></code></pre>
       </div>
     </div>
   </div>
+</div>
 </div>
