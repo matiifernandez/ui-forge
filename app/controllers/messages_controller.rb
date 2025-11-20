@@ -22,18 +22,33 @@ PROMPT
     @chat = Chat.find(params[:chat_id])
     @component = @chat.component
     @message = Message.new(message_params)
+    @project = @component.project
     @message.chat = @chat
     @message.role = "user"
     if @message.save
       @ruby_llm_chat = RubyLLM.chat
+      build_conversation_history
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat)
+      respond_to do |format|
+        format.html { redirect_to chat_messages_path(@chat) }
+        format.turbo_stream { render 'create' }
+      end
     else
       render chat_path(@chat), status: :unprocessable_entity
     end
   end
 
   private
+
+  def build_conversation_history
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message({
+        role: message.role,
+        content: message.content
+      })
+    end
+  end
 
   def message_params
     params.require(:message).permit(:content)
