@@ -5,7 +5,7 @@
 }
 
 #navbar-example3 .nav-link {
-  color: #372F39;
+  color: #dfe2e4;
 }
 
 #navbar-example3 .nav-link.active {
@@ -22,11 +22,11 @@
   position: sticky;
   top: 86px;
   z-index: 900;
-  background-color: #F4F4F4;
+  background-color: rgb(37, 37, 37);
   margin-bottom: 1rem;
-  border-bottom: solid 1px lightgrey;
+  border-bottom: solid 1px #505050ff;
   align-items: center;
-  color: #464646;
+  color: rgb(227, 225, 225);
 }
 
 .new-component-btn {
@@ -63,4 +63,8 @@
   h4 {
     margin-bottom: 0px;
   }
+}
+
+.main-col {
+  border-right: solid 1px #505050ff;
 }
