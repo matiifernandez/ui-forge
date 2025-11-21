@@ -14,7 +14,7 @@ class Project < ApplicationRecord
   private
 
   def generate_default_components
-    @ruby_llm_chat = RubyLLM.chat
+    @ruby_llm_chat = RubyLLM.chat(model: ENV["AI_MODEL"])
 
     components = ['banner', 'navbar', 'button']
 
