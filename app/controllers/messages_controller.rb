@@ -33,7 +33,7 @@ PROMPT
     @message.chat = @chat
     @message.role = "user"
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat
+      @ruby_llm_chat = RubyLLM.chat(model: ENV["AI_MODEL"])
       build_conversation_history
       response = @ruby_llm_chat.with_instructions(instructions).with_schema(response_schema).ask(@message.content)
       if response.content["bootstrap"]
