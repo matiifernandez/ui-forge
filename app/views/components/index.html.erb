@@ -5,7 +5,7 @@
   </iframe>
 <% end %> -->
 <div class="row">
-  <div class="col-2 border-end">
+  <div class="col-2 main-col">
     <nav id="navbar-example3" class="sidebar-scroll pt-3 flex-column align-items-stretch pe-4">
       <% @components.each do |component| %>
         <nav class="nav nav-pills flex-column">
@@ -46,10 +46,10 @@
                   <%= component.html_code.gsub(/href="#"/, 'href="javascript:void(0)"') %>
                   <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
                 </body>
-              </html>" style="width: 100%; height: 300px; border: 1px solid #ddd; border-radius: 8px;"></iframe>
+              </html>" style="width: 100%; height: 300px; border: 1px solid #505050ff; border-radius: 8px;"></iframe>
           <% else %>
             <iframe src="<%= preview_project_component_path(@project, component) %>"
-              style="width: 100%; height: 300px; border: 1px solid #ccc; border-radius: 8px; margin-top: 8px; margin-bottom: 8px;">
+              style="width: 100%; height: 300px; border: 1px solid #505050ff; border-radius: 8px; margin-top: 8px; margin-bottom: 8px;">
             </iframe>
           <% end %>
         </div>
